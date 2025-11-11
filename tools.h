@@ -101,6 +101,14 @@
 #define PRINTABLE_PREFIX_SIZE 16
 #endif
 
+//0b00000001
+#define is_set(x, mask)   ( ((x) & (mask)) != 0u )
+#define set_bit(var, mask)  do { (var) |=  (mask); } while (0)
+#define clr_bit(var, mask)  do { (var) &= ~(mask); } while (0)
+
+static inline void set_bit_v(volatile uint32_t *reg, uint32_t mask) { *reg |=  mask; }
+static inline void clr_bit_v(volatile uint32_t *reg, uint32_t mask) { *reg &= ~mask; }
+
 void debugInit(void);
 void setDebugPrefix(const char *prf);
 int getSDLoggerNumber(void);
